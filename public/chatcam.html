@@ -8,32 +8,45 @@
 :root{--blue:#168cff;--cyan:#57ddff;--white:#f5f8ff}
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;color:var(--white);font-family:Arial,"Segoe UI",sans-serif}
-.scene{position:relative;width:100vw;height:100vh;overflow:hidden;background:transparent}
-.title{position:absolute;left:4.2vw;top:4.2vh;direction:ltr;text-align:left;color:#eaf9ff;font-size:clamp(22px,2.3vw,44px);font-weight:900;letter-spacing:.13em;text-shadow:0 0 8px #33bcff,0 0 22px #087bff;line-height:1.1}
-.title::after{content:"";display:block;width:70%;height:2px;margin-top:9px;background:linear-gradient(90deg,#28baff,transparent);box-shadow:0 0 10px #168cff}
-.prime{display:block;margin-top:7px;color:#79dfff;font-size:.34em;letter-spacing:.55em;text-shadow:none}
-.chat{position:absolute;right:2.5vw;top:5.2vh;bottom:4.8vh;width:min(590px,35vw);display:flex;flex-direction:column;min-width:310px}
-.chat::before{content:"";position:absolute;inset:-26px -2vw -18px -1vw;z-index:-1;background:linear-gradient(270deg,rgba(1,5,13,.60),rgba(1,7,18,.28) 62%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 94%,transparent)}
+.scene{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden;background:transparent;isolation:isolate}
+.title{position:absolute;left:clamp(24px,4.2vw,82px);top:clamp(22px,5vh,64px);direction:ltr;text-align:left;line-height:1}
+.brand{display:inline-flex;align-items:center;gap:9px;margin-bottom:13px;color:#91e7ff;font-size:clamp(10px,.72vw,13px);font-weight:900;letter-spacing:.42em;text-shadow:0 0 12px #168cff88}
+.brand-mark{position:relative;width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px #57ddff,0 0 19px #168cff}
+.brand-mark::after{content:"";position:absolute;inset:-5px;border:1px solid #57ddff66;border-radius:50%}
+.title-main{display:block;color:#f2faff;font-size:clamp(23px,2.45vw,47px);font-weight:900;letter-spacing:.12em;text-shadow:0 0 9px #33bcff88,0 0 28px #087bff66;white-space:nowrap}
+.title-rule{display:block;width:min(100%,290px);height:2px;margin-top:14px;background:linear-gradient(90deg,#52d9ff,#168cff 48%,transparent);box-shadow:0 0 12px #168cff;transform-origin:left;animation:rule-in .8s ease both}
+.title-rule::after{content:"";display:block;width:38px;height:4px;margin-top:-1px;background:#b9f4ff;box-shadow:0 0 12px #57ddff;border-radius:4px}
+.chat{position:absolute;right:clamp(22px,3vw,58px);top:5vh;bottom:4.5vh;width:min(620px,37vw);display:flex;flex-direction:column;min-width:310px}
+.chat::before{content:"";position:absolute;inset:-26px -2vw -18px -1vw;z-index:-1;background:linear-gradient(270deg,rgba(1,5,13,.66),rgba(1,7,18,.31) 62%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 94%,transparent)}
+.chat::after{content:"";position:absolute;right:-12px;top:7%;bottom:7%;width:1px;background:linear-gradient(180deg,transparent,#42cfff88 18%,#168cff55 78%,transparent);box-shadow:0 0 12px #168cff66;pointer-events:none}
 .chat-head{height:36px;flex:none;display:flex;align-items:center;justify-content:flex-start;gap:9px;margin:0 3px 12px;color:#ecf8ff;font-size:clamp(15px,1.1vw,20px);font-weight:800;letter-spacing:.06em;text-shadow:0 0 9px #168cff}
 .live-dot{width:8px;height:8px;flex:none;border-radius:50%;background:#55d9ff;box-shadow:0 0 10px #35bdff;animation:pulse 1.4s infinite}
 .feed{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(8px,1.1vh,15px);overflow:hidden;padding:2px 3px 4px}
-.msg{display:grid;grid-template-columns:minmax(92px,38%) minmax(0,1fr);gap:12px;align-items:baseline;direction:ltr;animation:enter .3s ease both;filter:drop-shadow(0 1px 4px #000)}
+.msg{display:grid;grid-template-columns:minmax(92px,38%) minmax(0,1fr);gap:12px;align-items:center;direction:ltr;animation:enter .3s ease both;filter:drop-shadow(0 1px 4px #000)}
 .identity{display:flex;justify-content:flex-end;align-items:center;gap:7px;direction:rtl;min-width:0}
+.avatar{width:28px;height:28px;flex:none;border-radius:50%;object-fit:cover;border:1px solid #67d9ff;box-shadow:0 0 9px #168cff88;background:#10253a}
 .name{font-size:clamp(15px,1.15vw,21px);line-height:1.25;font-weight:800;color:var(--cyan);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .badge{flex:none;padding:3px 6px;border-radius:6px;font-size:clamp(9px,.63vw,12px);line-height:1;font-weight:900;letter-spacing:.03em}
 .mod{background:#0878d2;color:#fff;border:1px solid #68d6ff;box-shadow:0 0 9px #168cff88}
 .og{background:#d9e9f7;color:#21364c;border:1px solid #fff}
 .vip{background:#ffca45;color:#231600;border:1px solid #ffe9a3}
 .message{min-width:0;color:#fff;font-size:clamp(14px,1.02vw,19px);line-height:1.35;text-align:right;direction:rtl;overflow-wrap:anywhere}
+.message-emote{display:inline-block;width:auto;height:1.65em;max-width:3em;object-fit:contain;vertical-align:middle;margin:0 .08em;filter:drop-shadow(0 1px 3px #000)}
 .empty{margin:auto;color:#d6e8fb;font-size:15px;text-align:right;opacity:.72;text-shadow:0 1px 5px #000}
 @keyframes enter{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
 @keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px #35bdff}}
-@media(max-width:800px){.chat{right:2vw;width:43vw;min-width:0}.msg{grid-template-columns:minmax(80px,40%) minmax(0,1fr);gap:8px}.title{left:3vw;top:3vh}}
+@keyframes rule-in{from{transform:scaleX(.25);opacity:.3}to{transform:scaleX(1);opacity:1}}
+@media(max-width:800px){.chat{right:5vw;width:53vw;min-width:0;top:20vh;bottom:4vh}.msg{grid-template-columns:minmax(80px,40%) minmax(0,1fr);gap:8px}.title{left:5vw;top:4vh}.title-main{font-size:clamp(20px,4vw,32px)}.chat-head{margin-bottom:7px}}
+@media(max-width:480px){.chat{right:4vw;width:66vw;top:21vh}.title-main{font-size:20px}.brand{margin-bottom:9px}.chat::before{inset:-12px -2vw -10px -1vw}}
 </style>
 </head>
 <body>
 <main class="scene">
-  <div class="title">JUST CHATTING<span class="prime">PRIME</span></div>
+  <div class="title" aria-label="Prime Just Chatting">
+    <span class="brand"><i class="brand-mark" aria-hidden="true"></i>PRIME</span>
+    <span class="title-main">JUST CHATTING</span>
+    <span class="title-rule" aria-hidden="true"></span>
+  </div>
   <section class="chat" aria-label="Kick live chat">
     <header class="chat-head"><span class="live-dot"></span><span>LIVE CHAT</span></header>
     <div class="feed" id="feed"><div class="empty" id="empty">بانتظار رسائل الشات…</div></div>
@@ -54,10 +67,48 @@ function addMessage(data){
     const label=String(raw).toUpperCase();if(!badgeClasses[label])continue;
     const badge=document.createElement('span');badge.className='badge '+badgeClasses[label];badge.textContent=label;identity.append(badge);
   }
-  const message=document.createElement('div');message.className='message';message.textContent=data.content||'';
+  if(typeof data.avatar==='string'&&/^https:\/\//i.test(data.avatar)){
+    const avatar=document.createElement('img');avatar.className='avatar';avatar.src=data.avatar;avatar.alt='';avatar.loading='eager';avatar.referrerPolicy='no-referrer';
+    avatar.onerror=()=>avatar.remove();identity.append(avatar);
+  }
+  const message=document.createElement('div');message.className='message';
+  renderMessage(message,data.content||'',Array.isArray(data.emotes)?data.emotes:[]);
   row.append(identity,message);feed.append(row);
   while(feed.querySelectorAll('.msg').length>11)feed.querySelector('.msg').remove();
   setTimeout(()=>{row.style.transition='opacity .6s ease';row.style.opacity='0';setTimeout(()=>row.remove(),650)},45000);
+}
+function renderMessage(target,content,emotes){
+  const known=new Map();
+  for(const item of emotes){const id=String(item?.emote_id||'');if(/^\d{1,20}$/.test(id))known.set(id,item)}
+  const spans=[];
+  for(const [id,item] of known){
+    for(const pos of (Array.isArray(item.positions)?item.positions:[])){
+      const start=Number(pos?.s),end=Number(pos?.e);
+      if(!Number.isInteger(start)||!Number.isInteger(end)||start<0||end<start)continue;
+      let token=content.slice(start,end+1),actualEnd=end+1;
+      let match=token.match(/^\[emote:(\d+):([^\]]+)\]$/);
+      if(!match){token=content.slice(start,end);actualEnd=end;match=token.match(/^\[emote:(\d+):([^\]]+)\]$/)}
+      if(match&&match[1]===id)spans.push({start,end:actualEnd,id,token});
+    }
+  }
+  // Kick may send its emote token without position metadata. Always recover tokens
+  // from the message text so they still render when the emotes array is missing.
+  const pattern=/\[emote:(\d{1,20}):([^\]]+)\]/g;let match;
+  while((match=pattern.exec(content))){
+    const start=match.index,end=pattern.lastIndex;
+    if(!spans.some(span=>span.start===start&&span.end===end))spans.push({start,end,id:match[1],token:match[0]});
+  }
+  spans.sort((a,b)=>a.start-b.start);
+  let cursor=0;
+  for(const span of spans){
+    if(span.start<cursor||span.end>content.length)continue;
+    target.append(document.createTextNode(content.slice(cursor,span.start)));
+    const img=document.createElement('img');img.className='message-emote';
+    img.src=`https://files.kick.com/emotes/${span.id}/fullsize`;img.alt=span.token;img.title=span.token;
+    img.loading='eager';img.referrerPolicy='no-referrer';
+    img.onerror=()=>{img.replaceWith(document.createTextNode(span.token))};target.append(img);cursor=span.end;
+  }
+  target.append(document.createTextNode(content.slice(cursor)));
 }
 const stream=new EventSource('/events');
 stream.addEventListener('message',event=>{try{addMessage(JSON.parse(event.data))}catch{}});
